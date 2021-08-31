@@ -1,20 +1,24 @@
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
-import { getStartTime } from './lib/api';
+import { getStartTime, getInterval, requestAlarm } from './lib/api';
 
 dayjs.extend(duration);
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.text === 'alarm') {
-    const milliseconds = request.milliseconds;
+// chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+//   if (request.text === 'alarm') {
+//     const milliseconds = request.milliseconds;
+//     console.log(milliseconds);
 
-    chrome.alarms.create('interval_notification', {
-      when: Date.now() + milliseconds,
-    });
+//     chrome.alarms.create('interval_notification', {
+//       when: Date.now() + milliseconds,
+//     });
 
-    sendResponse({ text: `alarm was set after ${milliseconds} milliseconds` });
-  }
-});
+//     sendResponse({ text: `alarm was set after ${milliseconds} milliseconds` });
+//   }
+
+//   sendResponse();
+//   return;
+// });
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {
   if (alarm.name === 'interval_notification') {
@@ -33,6 +37,14 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
         .format('HH時間mm分ss秒')}\n頑張ってるね！🍺`,
     });
 
+    // つくよみちゃんボイス再生
     new Audio('voices/voice_02_a.wav').play();
+
+    // 定期実行の再設定
+    const interval = await getInterval();
+    if (interval === undefined) {
+      throw new Error('startTime is undefined!');
+    }
+    requestAlarm(interval);
   }
 });

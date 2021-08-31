@@ -62,14 +62,15 @@ export const deleteStorage = () => chrome.storage.local.clear();
  * mミリ秒後の定期実行の依頼
  *
  * @example
- * await requestAlarm(10*1000)
+ * requestAlarm(10*1000)
  */
-export const requestAlarm = (milliseconds: number): Promise<void> =>
-  new Promise((resolve) =>
-    chrome.runtime.sendMessage({ text: 'alarm', milliseconds }, (response) => {
-      resolve(undefined);
-    }),
-  );
+export const requestAlarm = (milliseconds: number) =>
+  // chrome.runtime.sendMessage({ text: 'alarm', milliseconds }, (response) => {
+  //   resolve(undefined);
+  // }),
+  chrome.alarms.create('interval_notification', {
+    when: Date.now() + milliseconds,
+  });
 
 /**
  * 定期実行の破棄
