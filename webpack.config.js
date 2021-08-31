@@ -5,7 +5,7 @@ module.exports = {
   mode: process.env.NODE_ENV || 'development',
   entry: {
     popup: './src/Popup.tsx',
-    // background: './src/background.ts',
+    background: './src/background.ts',
   },
   output: {
     path: path.resolve(__dirname, 'build/'),
