@@ -32,10 +32,10 @@ export const ProgressScreen: VFC<Props> = ({ startTime }) => {
 
   // only for re-rendering
   const [, setCount] = useState<number>(0);
-  const renderIntarvalRef = useRef<NodeJS.Timeout | undefined>();
+  const renderIntarvalRef = useRef<number | undefined>();
 
   useEffect(() => {
-    renderIntarvalRef.current = setInterval(() => {
+    renderIntarvalRef.current = window.setInterval(() => {
       setCount((x) => x + 1);
     }, 1000);
 

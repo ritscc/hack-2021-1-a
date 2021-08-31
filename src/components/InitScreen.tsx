@@ -55,3 +55,7 @@ export const InitScreen: VFC<Props> = (props) => {
     </div>
   );
 };
+
+const A: VFC = () => {
+  return <div></div>;
+};
