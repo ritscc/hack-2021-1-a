@@ -1,42 +1,80 @@
-// storageからの開始時間の取得;
-export const getStartTime = (): number | undefined => {
-  let startTime: number | undefined;
+/**
+ * storageからの開始時間(ミリ秒)の取得;
+ *
+ * @example
+ * const startTime: number | undefined = await getStartTime();
+ */
+export const getStartTime = (): Promise<number | undefined> =>
+  new Promise((resolve) =>
+    chrome.storage.local.get('startTime', ({ startTime }) => {
+      resolve(startTime);
+    }),
+  );
 
-  chrome.storage.local.get('startTime', (res) => {
-    startTime = res.startTime;
-    console.log('startTime', startTime);
-  });
+/**
+ * storageからの通知間隔(ミリ秒)の取得
+ *
+ * @example
+ * const interval: number | undefined = await getInterval();
+ */
+export const getInterval = (): Promise<number | undefined> =>
+  new Promise((resolve) =>
+    chrome.storage.local.get('interval', ({ interval }) => {
+      resolve(interval);
+    }),
+  );
 
-  return startTime;
-};
+/**
+ * storageへの開始時間(ミリ秒)の登録
+ *
+ * @example
+ * await storeStartTime(new Date().getTime())
+ */
+export const storeStartTime = (startTime: number): Promise<void> =>
+  new Promise((resolve) =>
+    chrome.storage.local.set({ startTime }, () => {
+      resolve(undefined);
+    }),
+  );
 
-// storageからの通知間隔の取得
-export const getInterval = (): number | undefined => {
-  let interval: number | undefined;
+/**
+ * storageへの通知間隔(ミリ秒)の登録
+ *
+ * @example
+ * await storeInterval(10*1000)
+ */
+export const storeInterval = (interval: number): Promise<void> =>
+  new Promise((resolve) =>
+    chrome.storage.local.set({ interval }, () => {
+      resolve(undefined);
+    }),
+  );
 
-  chrome.storage.local.get('interval', (res) => {
-    interval = res.interval;
-    console.log('interval', interval);
-  });
+/**
+ * storageで保持する全ての値を破棄
+ *
+ * @example
+ * await deleteStorage()
+ */
+export const deleteStorage = () => chrome.storage.local.clear();
 
-  return interval;
-};
+/**
+ * mミリ秒後の定期実行の依頼
+ *
+ * @example
+ * await requestAlarm(10*1000)
+ */
+export const requestAlarm = (milliseconds: number): Promise<void> =>
+  new Promise((resolve) =>
+    chrome.runtime.sendMessage({ text: 'alarm', milliseconds }, (response) => {
+      resolve(undefined);
+    }),
+  );
 
-// storageへの開始時間の登録
-export const storeStartTime = (startTime: number) => {
-  chrome.storage.local.set({ startTime }, () => {
-    console.log('startTime was added');
-  });
-};
-
-// storageへの通知間隔の登録
-export const storeInterval = (interval: number) => {
-  chrome.storage.local.set({ interval }, () => {
-    console.log('interval was added');
-  });
-};
-
-// storageで保持する全ての値を破棄
-export const deleteStorage = () => {
-  chrome.storage.local.clear();
-};
+/**
+ * 定期実行の破棄
+ *
+ * @example
+ * await resetAlarm()
+ */
+export const resetAlarm = () => chrome.alarms.clearAll();
