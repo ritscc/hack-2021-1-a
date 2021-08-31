@@ -37,7 +37,9 @@
     "dayjs": "^1.10.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-hook-form": "^7.14.2",
     "react-scripts": "4.0.3",
+    "react-share": "^4.4.0",
     "typescript": "^4.1.2",
     "web-vitals": "^1.0.1"
   },
