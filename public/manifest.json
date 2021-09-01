@@ -1,7 +1,11 @@
 {
   "manifest_version": 2,
-  "name": "React Chrome Extension",
+  "name": "力がつくよみちゃん",
+  "description": "極限まで頑張るあなたを「つくよみちゃん」が応援します",
   "version": "1",
+  "icons": {
+    "128": "logo192.png"
+  },
   "browser_action": {
     "default_icon": "logo192.png",
     "default_popup": "popup.html"
