@@ -24,7 +24,6 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     });
 
     playTsukuyomiVoice(elapsedMillisecond);
-    alert(elapsedMillisecond);
 
     // 定期実行の再設定
     const interval = await getInterval();
@@ -39,7 +38,6 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
 
 function playTsukuyomiVoice(millisecond: number) {
   const second = millisecond * 1000;
-  console.log(second);
   let path = '';
 
   if (second < 10) {
