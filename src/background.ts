@@ -37,41 +37,41 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
 });
 
 function playTsukuyomiVoice(millisecond: number) {
-  const second = millisecond * 1000;
+  const second = (millisecond - 20) / 1000;
   let path = '';
 
-  if (second < 10) {
+  if (9 < second && second < 11) {
     path = 'voices/sec/voice_10sec.wav';
-  } else if (second < 20) {
+  } else if (19 < second && second < 21) {
     path = 'voices/sec/voice_20sec.wav';
-  } else if (second < 30) {
+  } else if (29 < second && second < 31) {
     path = 'voices/sec/voice_30sec.wav';
-  } else if (second < 40) {
+  } else if (39 < second && second < 41) {
     path = 'voices/sec/voice_40sec.wav';
-  } else if (second < 50) {
+  } else if (49 < second && second < 51) {
     path = 'voices/sec/voice_50sec.wav';
-  } else if (second < 1 * 60) {
+  } else if (59 < second && second < 61) {
     path = 'voices/min/voice_1min.wav';
-  } else if (second < 2 * 60) {
+  } else if (Math.abs(second - 2 * 60) < 1) {
     path = 'voices/min/voice_2min.wav';
-  } else if (second < 3 * 60) {
+  } else if (Math.abs(second - 3 * 60) < 1) {
     path = 'voices/min/voice_3min.wav';
-  } else if (second < 4 * 60) {
+  } else if (Math.abs(second - 4 * 60) < 1) {
     path = 'voices/min/voice_4min.wav';
-  } else if (second < 5 * 60) {
+  } else if (Math.abs(second - 5 * 60) < 1) {
     path = 'voices/min/voice_5min.wav';
-  } else if (second < 10 * 60) {
+  } else if (Math.abs(second - 10 * 60) < 1) {
     path = 'voices/min/voice_10min.wav';
-  } else if (second < 1 * 60 * 60) {
+  } else if (Math.abs(second - 1 * 60 * 60) < 1) {
     path = 'voices/hour/voice_1hour.wav';
-  } else if (second < 2 * 60 * 60) {
-    path = 'voices/hour/voice_1hour.wav';
-  } else if (second < 3 * 60 * 60) {
-    path = 'voices/hour/voice_1hour.wav';
-  } else if (second < 4 * 60 * 60) {
-    path = 'voices/hour/voice_1hour.wav';
-  } else if (second < 5 * 60 * 60) {
-    path = 'voices/hour/voice_1hour.wav';
+  } else if (Math.abs(second - 2 * 60 * 60) < 1) {
+    path = 'voices/hour/voice_2hour.wav';
+  } else if (Math.abs(second - 3 * 60 * 60) < 1) {
+    path = 'voices/hour/voice_3hour.wav';
+  } else if (Math.abs(second - 4 * 60 * 60) < 1) {
+    path = 'voices/hour/voice_4hour.wav';
+  } else if (Math.abs(second - 5 * 60 * 60) < 1) {
+    path = 'voices/hour/voice_5hour.wav';
   } else {
     const pathes = [
       'voices/other/voice_02_a.wav',
