@@ -32,21 +32,21 @@ export const ProgressScreen: VFC<Props> = ({ startTime }) => {
 
   // only for re-rendering
   const [, setCount] = useState<number>(0);
-  const renderIntarvalRef = useRef<number | undefined>();
+  const renderIntervalRef = useRef<number | undefined>();
 
   useEffect(() => {
-    renderIntarvalRef.current = window.setInterval(() => {
+    renderIntervalRef.current = window.setInterval(() => {
       setCount((x) => x + 1);
     }, 1000);
 
     return () => {
-      if (renderIntarvalRef.current === undefined) {
+      if (renderIntervalRef.current === undefined) {
         return;
       }
 
-      renderIntarvalRef.current = undefined;
+      renderIntervalRef.current = undefined;
 
-      clearInterval(renderIntarvalRef.current);
+      clearInterval(renderIntervalRef.current);
     };
   }, []);
 
@@ -56,6 +56,7 @@ export const ProgressScreen: VFC<Props> = ({ startTime }) => {
         <div className="inline-center ProgressScreen--time">
           {dayjs.duration(dayjs().diff(dayjs(startTime))).format('HH:mm:ss')}
         </div>
+
         <div>
           <div className="inline-center">
             {stoppedTime === undefined && (
@@ -64,9 +65,9 @@ export const ProgressScreen: VFC<Props> = ({ startTime }) => {
                 onClick={async () => {
                   setStoppedTime(dayjs());
 
-                  if (renderIntarvalRef.current !== undefined) {
-                    clearInterval(renderIntarvalRef.current);
-                    renderIntarvalRef.current = undefined;
+                  if (renderIntervalRef.current !== undefined) {
+                    clearInterval(renderIntervalRef.current);
+                    renderIntervalRef.current = undefined;
                   }
 
                   await resetAlarm();
@@ -88,7 +89,7 @@ export const ProgressScreen: VFC<Props> = ({ startTime }) => {
                     .format('HH:mm:ss');
 
                   openTwitter({
-                    text: `💮 ${durationText} の間がんばったよ🌙`,
+                    text: `【力がつくよみちゃん】 ${durationText} の間がんばったよ🌙`,
                     url: 'https://github.com/ritscc/hack-2021-1-a',
                     hashtags: ['つくよみちゃん'],
                   });
