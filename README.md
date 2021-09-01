@@ -6,7 +6,7 @@
 
 ## 使い方
 ### ダウンロード
-Release ページ から最新のリリースのビルド済み zip ファイルをダウンロードしてください。
+[Release](https://github.com/ritscc/hack-2021-1-a/releases) ページ から最新のリリースのビルド済み zip ファイルをダウンロードしてください。
 
 ### インストール
 1. ビルド済み zip ファイルをダウンロードし展開する
@@ -17,25 +17,9 @@ Release ページ から最新のリリースのビルド済み zip ファイル
 
 
 ## 開発
-はじめに，VSCode拡張機能の[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)と[Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)をインストールする
-
-### 最初だけ
-```sh
-git clone https://github.com/ritscc/hack-2021-1-a.git
-cd $_
-```
-
-### 作業前に毎回する
-```sh
-git pull
-yarn install
-```
-
-### ビルド
-1. `yarn build` を実行
-2. `build/` を「パッケージ化されていない拡張機能を読み込む」 から読み込ませる
+[Wiki](https://github.com/ritscc/hack-2021-1-a/wiki)を参照してください。
 
 
 ## クレジット
 このソフトウェアでは、フリー素材キャラクター「つくよみちゃん」（© Rei Yumesaki）を使用しています。
-詳しくは、同梱している「LICENSE.txt」をご覧ください。
+詳しくは、[LICENSE.txt](https://github.com/ritscc/hack-2021-1-a/blob/main/LICENSE.txt)をご覧ください。
