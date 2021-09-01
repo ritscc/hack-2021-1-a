@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { InitScreen } from './components/InitScreen';
+import { Layout } from './components/Layout';
 import { ProgressScreen } from './components/ProgressScreen';
+
 import { getStartTime } from './lib/api';
 
 type Screen = 'LOADING' | 'INITIAL' | 'PROGRESS';
@@ -23,9 +25,9 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <div className="main-screen">
-        {screen === 'LOADING' && <p>なうろーでぃんっ！</p>}
+    <Layout>
+      <div>
+        {screen === 'LOADING' && <p></p>}
         {screen === 'INITIAL' && (
           <InitScreen
             onStart={(startTime) => {
@@ -38,7 +40,7 @@ function App() {
           <ProgressScreen startTime={startTime} />
         )}
       </div>
-    </div>
+    </Layout>
   );
 }
 

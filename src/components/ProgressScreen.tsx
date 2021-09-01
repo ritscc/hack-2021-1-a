@@ -51,46 +51,54 @@ export const ProgressScreen: VFC<Props> = ({ startTime }) => {
   }, []);
 
   return (
-    <div>
-      <div>
-        {dayjs.duration(dayjs().diff(dayjs(startTime))).format('HH:mm:ss')}
-      </div>
-      <div>
-        {stoppedTime === undefined && (
-          <button
-            onClick={async () => {
-              setStoppedTime(dayjs());
+    <div className="ProgressScreen--outer">
+      <div className="ProgressScreen--inner">
+        <div className="inline-center ProgressScreen--time">
+          {dayjs.duration(dayjs().diff(dayjs(startTime))).format('HH:mm:ss')}
+        </div>
+        <div>
+          <div className="inline-center">
+            {stoppedTime === undefined && (
+              <button
+                className="InitScreen__start--button"
+                onClick={async () => {
+                  setStoppedTime(dayjs());
 
-              if (renderIntarvalRef.current !== undefined) {
-                clearInterval(renderIntarvalRef.current);
-                renderIntarvalRef.current = undefined;
-              }
+                  if (renderIntarvalRef.current !== undefined) {
+                    clearInterval(renderIntarvalRef.current);
+                    renderIntarvalRef.current = undefined;
+                  }
 
-              await resetAlarm();
-              await deleteStorage();
-            }}
-          >
-            作業終了！
-          </button>
-        )}
+                  await resetAlarm();
+                  await deleteStorage();
+                }}
+              >
+                作業終了！
+              </button>
+            )}
+          </div>
 
-        {stoppedTime !== undefined && (
-          <button
-            onClick={() => {
-              const durationText = dayjs
-                .duration(stoppedTime.diff(dayjs(startTime)))
-                .format('HH:mm:ss');
+          <div className="inline-center">
+            {stoppedTime !== undefined && (
+              <button
+                className="ProgressScreen--tweetbutton"
+                onClick={() => {
+                  const durationText = dayjs
+                    .duration(stoppedTime.diff(dayjs(startTime)))
+                    .format('HH:mm:ss');
 
-              openTwitter({
-                text: `${durationText} の間がんばったよ〜`,
-                url: 'http://ritsumei.ac.jp',
-                hashtags: ['test'],
-              });
-            }}
-          >
-            ついーと！
-          </button>
-        )}
+                  openTwitter({
+                    text: `💮 ${durationText} の間がんばったよ🌙`,
+                    url: 'https://github.com/ritscc/hack-2021-1-a',
+                    hashtags: ['つくよみちゃん'],
+                  });
+                }}
+              >
+                Tweet
+              </button>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

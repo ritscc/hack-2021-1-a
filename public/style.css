@@ -1,4 +1,88 @@
 body {
+  margin: 0;
+  padding: 0;
+
   width: 400px;
   height: 300px;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  background-image: url('./images/background.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top;
+
+  font-size: 1.2rem;
+}
+
+/* .Layout {
+} */
+
+.InitScreen__title {
+  text-align: center;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #000000;
+}
+
+.InitScreen__start--button {
+  background-color: #ffffff;
+
+  margin-bottom: 2rem;
+  padding: 0.5rem 3rem;
+  border-width: 6px;
+  border-color: #74ccb1;
+  border-radius: 5px;
+
+  color: #74ccb1;
+
+  font-size: 1.2rem;
+}
+
+.inline-center {
+  text-align: center;
+}
+
+.InitScreen__inputs {
+  margin: 0 auto;
+  background-color: #ffffff;
+  width: fit-content;
+
+  border-color: #74ccb1;
+  border-width: 6px;
+  border-radius: 5px;
+}
+
+.InitScreen__inputs--input {
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  text-align: right;
+}
+
+.ProgressScreen--outer {
+  height: 290px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.ProgressScreen--inner {
+}
+
+.ProgressScreen--time {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.ProgressScreen--tweetbutton {
+  border-width: 0;
+  background-color: #00acee;
+  border-radius: 2px;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
 }
